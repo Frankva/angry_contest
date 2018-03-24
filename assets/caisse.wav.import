@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/caisse.wav-60af86c272956841e0d91affa0d10de8.sample"
+
+[deps]
+
+source_file="res://assets/caisse.wav"
+source_md5="0cbe903bddd5537a3ab2f089ca445ded"
+
+dest_files=[ "res://.import/caisse.wav-60af86c272956841e0d91affa0d10de8.sample" ]
+dest_md5="a43403e990563b458f36d01051f6fac9"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

@@ -1,0 +1,39 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://assets/smoke/smoke1.png" type="Texture" id=1]
+[ext_resource path="res://assets/smoke/smoke2.png" type="Texture" id=2]
+[ext_resource path="res://assets/smoke/smoke3.png" type="Texture" id=3]
+[ext_resource path="res://assets/smoke/smoke4.png" type="Texture" id=4]
+[ext_resource path="res://assets/smoke/smoke5.png" type="Texture" id=5]
+[ext_resource path="res://assets/smoke/smoke6.png" type="Texture" id=6]
+[ext_resource path="res://assets/smoke/smoke7.png" type="Texture" id=7]
+[ext_resource path="res://Explosion.gd" type="Script" id=8]
+
+[sub_resource type="SpriteFrames" id=1]
+
+animations = [ {
+"frames": [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "default",
+"speed": 25.0
+} ]
+
+[node name="Explosion" type="AnimatedSprite"]
+
+scale = Vector2( 0.6, 0.6 )
+frames = SubResource( 1 )
+animation = "default"
+playing = true
+script = ExtResource( 8 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="PopTimer" type="Timer" parent="." index="0"]
+
+process_mode = 1
+wait_time = 0.24
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="PopTimer" to="." method="_on_PopTimer_timeout"]
+
+

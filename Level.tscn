@@ -1,0 +1,229 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Level.gd" type="Script" id=1]
+[ext_resource path="res://assets/background.jpg" type="Texture" id=2]
+[ext_resource path="res://Bird.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Bird.gd" type="Script" id=4]
+[ext_resource path="res://Block.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/resume.png" type="Texture" id=6]
+[ext_resource path="res://assets/caisse.wav" type="AudioStream" id=7]
+[ext_resource path="res://assets/tire.wav" type="AudioStream" id=8]
+[ext_resource path="res://assets/pause.png" type="Texture" id=9]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 514.309, 40.2413 )
+
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 67.4958, 301.751 )
+
+[sub_resource type="GDScript" id=3]
+
+script/source = "extends Button
+
+# class member variables go here, for example:
+# var a = 2
+# var b = \"textvar\"
+
+func _ready():
+	# Called every time the node is added to the scene.
+	# Initialization here
+	pass
+
+#func _process(delta):
+#	# Called every frame. Delta is time since last frame.
+#	# Update game logic here.
+#	pass
+
+
+func _on_Button_pressed():
+	get_tree().paused=false # replace with function body
+	hide()
+	get_parent().get_parent().set_modulate(Color(1,1,1,1))
+	get_parent().get_parent().get_node(\"pause\").show()
+"
+
+[sub_resource type="AudioStreamRandomPitch" id=4]
+
+audio_stream = ExtResource( 7 )
+random_pitch = 1.2
+
+[sub_resource type="AudioStreamRandomPitch" id=5]
+
+audio_stream = ExtResource( 8 )
+random_pitch = 1.2
+
+[node name="Level" type="Node2D" index="0"]
+
+position = Vector2( 0, -1 )
+script = ExtResource( 1 )
+_sections_unfolded = [ "Pause", "Visibility" ]
+
+[node name="Background" type="Sprite" parent="." index="0"]
+
+position = Vector2( 513.706, 300.806 )
+scale = Vector2( 0.400939, 0.417051 )
+texture = ExtResource( 2 )
+
+[node name="Bird" parent="." index="1" instance=ExtResource( 3 )]
+
+contacts_reported = 5
+contact_monitor = true
+can_sleep = false
+script = ExtResource( 4 )
+
+[node name="Ground" type="StaticBody2D" parent="." index="2"]
+
+editor/display_folded = true
+position = Vector2( 512.532, 562.169 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground" index="0"]
+
+shape = SubResource( 1 )
+
+[node name="EastWall" type="StaticBody2D" parent="." index="3"]
+
+editor/display_folded = true
+position = Vector2( -69.4349, 303.202 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EastWall" index="0"]
+
+shape = SubResource( 2 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="WestWall" type="StaticBody2D" parent="." index="4"]
+
+editor/display_folded = true
+position = Vector2( 1093.68, 300.481 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WestWall" index="0"]
+
+shape = SubResource( 2 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Blocks" type="Node2D" parent="." index="5"]
+
+editor/display_folded = true
+position = Vector2( 589.474, 491.967 )
+
+[node name="Block1" parent="Blocks" index="0" instance=ExtResource( 5 )]
+
+position = Vector2( 210, -11 )
+contacts_reported = 5
+contact_monitor = true
+
+[node name="Block2" parent="Blocks" index="1" instance=ExtResource( 5 )]
+
+position = Vector2( 272.828, -363.446 )
+mode = 1
+contacts_reported = 5
+contact_monitor = true
+
+[node name="Block3" parent="Blocks" index="2" instance=ExtResource( 5 )]
+
+position = Vector2( 239.828, -442.679 )
+contacts_reported = 5
+contact_monitor = true
+
+[node name="Button" type="Node2D" parent="." index="6"]
+
+editor/display_folded = true
+modulate = Color( 2, 2, 2, 1 )
+position = Vector2( 452, 212 )
+_sections_unfolded = [ "Visibility" ]
+
+[node name="Button" type="Button" parent="Button" index="0"]
+
+pause_mode = 2
+visible = false
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 69.0
+margin_bottom = 62.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 0
+shortcut = null
+group = null
+icon = ExtResource( 6 )
+flat = true
+align = 1
+script = SubResource( 3 )
+_sections_unfolded = [ "Pause", "Theme", "Visibility", "custom_colors", "custom_fonts", "custom_styles" ]
+
+[node name="explotion" type="AudioStreamPlayer" parent="." index="7"]
+
+stream = SubResource( 4 )
+volume_db = 0.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="tire" type="AudioStreamPlayer" parent="." index="8"]
+
+stream = SubResource( 5 )
+volume_db = -10.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="pause" type="Button" parent="." index="9"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 133.0
+margin_bottom = 126.0
+rect_scale = Vector2( 0.5, 0.5 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 0
+shortcut = null
+group = null
+icon = ExtResource( 9 )
+flat = true
+align = 1
+_sections_unfolded = [ "Anchor", "Grow Direction", "Margin", "Rect" ]
+
+[connection signal="pressed" from="Button/Button" to="Button/Button" method="_on_Button_pressed"]
+
+[connection signal="pressed" from="pause" to="." method="_on_pause_pressed"]
+
+

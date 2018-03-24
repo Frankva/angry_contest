@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/tire.wav-6f1b764671e8facbcc600427ed0995a2.sample"
+
+[deps]
+
+source_file="res://assets/tire.wav"
+source_md5="2ce7b7a63f50205903240a20411b9984"
+
+dest_files=[ "res://.import/tire.wav-6f1b764671e8facbcc600427ed0995a2.sample" ]
+dest_md5="2ad67acc50baf7ccaa5108668c41c18f"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0
